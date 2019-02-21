@@ -18,4 +18,4 @@ Morgan for debugging
 
 # Notes:
 Credentials for both the VPN and Oracle database are currently set as environment
-variables, but you can put your own in to test it out.
+variables, but you can use your own in to test it out.
