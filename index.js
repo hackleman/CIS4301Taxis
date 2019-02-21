@@ -1,15 +1,12 @@
 const webServer = require('./services/web-server.js');
 const database = require('./services/database.js');
 const dbConfig = require('./config/database.js');
-const defaultThreadPoolSize = 4;
 
 const vpn = require('cisco-vpn')({
   server: process.env.VPN_SERVER,
   username: process.env.VPN_username,
   password: process.env.VPN_PASSWORD
 })
-
-process.env.UV_THREADPOOL_SIZE = dbConfig.CISEPool.poolMax + defaultThreadPoolSize;
 
 async function startup() {
   console.log('Starting application');
