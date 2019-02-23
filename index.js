@@ -12,7 +12,7 @@ async function startup() {
   console.log('Starting application');
 
   await vpn.connect()
-      .then(() => console.log('connected to UF VPN'))
+    .then(() => console.log('connected to UF VPN'))
 
   try {
     console.log('Initializing database module');
@@ -44,15 +44,24 @@ async function shutdown(e) {
   console.log('Shutting down');
 
   try {
-    console.log('Closing web server module');
-    console.log('Closing UF VPN');
-
+//    console.log('Closing web server module');
+//    console.log('Closing UF VPN');
     await vpn.disconnect()
         .then(() => console.log('Disconnected from UF VPN'))
 
     await webServer.close();
   } catch (e) {
     console.log('Encountered error', e);
+
+    err = err || e;
+  }
+
+  try {
+    console.log('Closing database module');
+
+    await database.close();
+  } catch (err) {
+    console.log ('Encountered error closing database', e);
 
     err = err || e;
   }
